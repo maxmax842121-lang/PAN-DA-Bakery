@@ -103,7 +103,22 @@ header { background: var(--primary); color: white; padding: 1rem 0; position: st
    ສ່ວນແກ້ໄຂໂຄ້ດສະເພາະການສະແດງຜົນເທິງມືຖື (Dropdown Menu & Grid 2 Column)
    ========================================== */
 @media (max-width: 768px) {
-    
+    /* ==========================================
+       ປັບການຕັດຄຳຂໍ້ຄວາມເທິງໜ້າສະໄລດ໌ (Hero Banner) ສະເພາະມືຖື
+       ========================================== */
+    .hero-content h2 {
+        font-size: 2.2rem !important; /* ປັບຂະໜາດຟອນຕ໌ໃຫ້ພໍດີກັບໜ້າຈໍມືຖື */
+        line-height: 1.3;             /* ເພີ່ມໄລຍະຫ່າງລະຫວ່າງບັນທັດໃຫ້ບໍ່ຕິດກັນເກີນໄປ */
+        max-width: 280px;             /* ບັງຄັບຄວາມກວ້າງໃຫ້ຂໍ້ຄວາມຫັກລົງມາເປັນ 2 ບັນທັດພໍດີ */
+        margin: 0 auto 10px auto;     /* ຈັດໃຫ້ກ່ອງຂໍ້ຄວາມຢູ່ເຄິ່ງກາງໜ້າຈໍ */
+        white-space: normal;          /* ເປີດໃຫ້ມີການຕັດຄຳອັດຕະໂນມັດຕາມຄວາມກວ້າງ */
+        word-break: keep-all;         /* ປ້ອງກັນບໍ່ໃຫ້ພະຍັນຊະນະ ຫຼື ສະຫຼະແຍກກັນແບບຜິດຫຼັກພາສາ */
+    }
+
+    .hero-content p {
+        font-size: 0.9rem !important; /* ປັບຕົວໜັງສືບັນຍາຍດ້ານລຸ່ມໃຫ້ເລັກລົງເລັກນ້ອຍ */
+        padding: 0 10px;
+    }
     .nav-container {
         position: relative;
         display: flex;
