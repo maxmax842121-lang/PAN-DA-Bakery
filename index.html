@@ -12,28 +12,32 @@
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <div class="logo" onclick="showPage('home')">
-                <a class="navbar-brand" href="#" style="display: flex; align-items: center; position: relative; padding-left: 100px; min-height: 100px;">
-                    <img src="logo.png" alt="Logo" style="height: 110px; width: auto; object-fit: contain; position: absolute; left: 0; top: 50%; transform: translateY(-50%);">
-                    
-                </a>
-                <h1>PAN-DA Bakery</h1>
-                
-                <i class="fa-solid fa-bread-slice"></i>
-            </div>
-            <nav class="nav-links">
-                <a onclick="showPage('home')" id="nav-home" class="active">ໜ້າຫຼັກ</a>
-                <a onclick="showPage('shop')" id="nav-shop">ເມນູ</a>
-                <a onclick="showPage('promo')" id="nav-promo">ໂປຣໂມຊັ່ນ</a>
-                <a onclick="showPage('contact')" id="nav-contact">ຕິດຕໍ່</a>
-            </nav>
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fa-solid fa-basket-shopping"></i> <span id="count">0</span>
-            </div>
+<header>
+    <div class="nav-container">
+        <div class="logo" onclick="showPage('home')">
+            <a class="navbar-brand" href="#" style="display: flex; align-items: center; position: relative; padding-left: 50px; min-height: 50px;">
+                <img src="logo.png" alt="Logo" style="height: 50px; width: auto; object-fit: contain; position: absolute; left: 0; top: 50%; transform: translateY(-50%);">
+            </a>
+            <h1>PAN-DA Bakery</h1>
         </div>
-    </header>
+        
+        <button class="menu-toggle" id="menu-toggle" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="nav-links">
+            <a onclick="selectPage('home')" id="nav-home" class="active">ໜ້າແລກ</a>
+            <a onclick="selectPage('shop')" id="nav-shop">ເມນູ</a>
+            <a onclick="selectPage('promo')" id="nav-promo">ໂປຣໂມຊັ່ນ</a>
+            <a onclick="selectPage('contact')" id="nav-contact">ຕິດຕໍ່</a>
+        </nav>
+        
+        <div class="cart-icon" onclick="toggleCart()">
+            <i class="fa-solid fa-basket-shopping"></i> 
+            <span id="count">0</span>
+        </div>
+    </div>
+</header>
 
     <section id="home" class="page active">
         <div class="hero">
