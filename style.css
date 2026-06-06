@@ -99,3 +99,91 @@ header { background: var(--primary); color: white; padding: 1rem 0; position: st
     color: #b30000 !important; /* ປ່ຽນເປັນສີແດງເຂັ້ມຂຶ້ນ */
 }
 
+/* ==========================================
+   ສ່ວນແກ້ໄຂໂຄ້ດສະເພາະການສະແດງຜົນເທິງມືຖື (Mobile Responsive)
+   ========================================== */
+@media (max-width: 768px) {
+    
+    /* 1. ປັບແຖບ Header ດ້ານເທິງໃຫ້ກະທັດຮັດ ແລະ ບໍ່ບິດເບື້ອນ */
+    header {
+        padding: 0.5rem 0; /* ຫຼຸດໄລຍະຫ່າງເທິງ-ລຸ່ມຂອງແຖບ */
+    }
+
+    /* 2. ຈັດການ Layout ຂອງ Header ໃຫ້ລຽງກັນເປັນແນວນອນທີ່ສວຍງາມ */
+    .nav-container {
+        display: flex;
+        flex-direction: row; /* ບັງຄັບໃຫ້ລຽງກັນໃນແນວນອນ */
+        justify-content: space-between;
+        align-items: center;
+        width: 95%; /* ຂະຫຍາຍໃຫ້ເຕັມໜ້າຈໍມືຖື */
+        gap: 5px;
+    }
+
+    /* 3. ປັບຂະໜາດໂລໂກ້ ແລະ ຊື່ຮ້ານໃຫ້ເລັກລົງ ບໍ່ໃຫ້ເບียดເມນູ */
+    .logo {
+        gap: 5px;
+    }
+    .logo h1 {
+        font-size: 1.1rem !important; /* ຫຼຸດຂະໜາດຊື່ຮ້ານ */
+        white-space: nowrap; /* ບໍ່ໃຫ້ຊື່ຮ້ານຫັກລົງມາເປັນ 2 ບັນທັດ */
+    }
+    .logo a {
+        padding-left: 45px !important; /* ປັບຕຳແໜ່ງກອບຮູບພາບ */
+        min-height: 45px !important;
+    }
+    .logo a img {
+        height: 45px !important; /* ຫຼຸດຂະໜາດຮູບໂລໂກ້ແພນດ້າ */
+    }
+    .logo i {
+        font-size: 1.1rem !important; /* ຫຼຸດຂະໜາດໄອຄອນຂະໜົມປັງ */
+    }
+
+    /* 4. ຈັດແຖບເມນູລິ້ງຄ໌ໃຫ້ນອນລຽງກັນ ແລະ ຕົວໜັງສືພໍດີ */
+    .nav-links {
+        display: flex;
+        gap: 8px; /* ໄລຍະຫ່າງລະຫວ່າງເມນູ */
+    }
+    .nav-links a {
+        margin: 0 !important;
+        padding: 2px 4px;
+        font-size: 0.8rem !important; /* ຫຼຸດຂະໜາດຟອນຕ໌ເມນູໃຫ້ພໍດີມືຖື */
+    }
+
+    /* 5. ປັບປຸ່ມຕະກ່າສິນຄ້າໃຫ້ເລັກລົງເຂົ້າກັບແຖບເທິງ */
+    .cart-icon {
+        padding: 5px 10px !important;
+        font-size: 0.85rem;
+    }
+
+    /* ========================================== */
+
+    /* 6. ປັບປຸງໜ້າເມນູ (Shop): ປ່ຽນໃຫ້ສະແດງຜົນເປັນ 2 ຖັນຕໍ່ແຖວ (Double Column) */
+    .grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* ແບ່ງເປັນ 2 ກາດຕໍ່ 1 ແຖວ */
+        gap: 12px !important; /* ຫຼຸດໄລຍະຫ່າງລະຫວ່າງກາດ */
+        padding: 0 5px;
+    }
+
+    /* 7. ປັບແຖບກາດເມນູໃຫ້ເລັກ, ກະທັດຮັດ ແລະ ສວຍງາມ */
+    .card {
+        border-radius: 8px !important; /* ປັບມົນໃຫ້ພໍດີ */
+    }
+    .card img {
+        height: 120px !important; /* ຫຼຸດຄວາມສູງຂອງຮູບຂະໜົມ */
+    }
+    .card-info, .card-body {
+        padding: 10px !important; /* ຫຼຸດ Padding ທາງໃນ */
+    }
+    .card-body h3 {
+        font-size: 0.95rem !important; /* ຫຼຸດຂະໜາດຊື່ຂະໜົມ */
+        margin-bottom: 5px;
+    }
+    .price {
+        font-size: 0.95rem !important; /* ຫຼຸດຂະໜາດຕົວເລກລາຄາ */
+        margin: 5px 0 !important;
+    }
+    .btn-add {
+        padding: 6px 10px !important; /* ປັບປຸ່ມ "ເພີ່ມລົງກະຕ່າ" ໃຫ້ໜາພໍດີກັບນິ້ວມືກົດ */
+        font-size: 0.85rem;
+    }
+}
