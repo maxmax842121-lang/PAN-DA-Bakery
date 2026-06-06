@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAN-DA Bakery - Luxury Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('home')">
+                <a class="navbar-brand" href="#" style="display: flex; align-items: center; position: relative; padding-left: 100px; min-height: 100px;">
+                    <img src="logo.png" alt="Logo" style="height: 110px; width: auto; object-fit: contain; position: absolute; left: 0; top: 50%; transform: translateY(-50%);">
+                    
+                </a>
+                <h1>PAN-DA Bakery</h1>
+                
+                <i class="fa-solid fa-bread-slice"></i>
+            </div>
+            <nav class="nav-links">
+                <a onclick="showPage('home')" id="nav-home" class="active">ໜ້າຫຼັກ</a>
+                <a onclick="showPage('shop')" id="nav-shop">ເມນູ</a>
+                <a onclick="showPage('promo')" id="nav-promo">ໂປຣໂມຊັ່ນ</a>
+                <a onclick="showPage('contact')" id="nav-contact">ຕິດຕໍ່</a>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fa-solid fa-basket-shopping"></i> <span id="count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?w=1200">
+                <div class="hero-content">
+                    <h2>ອົບສົດໃໝ່ທຸກວັນ</h2>
+                    <p>PAN-DA Bakery - ຄຸນນະພາບພຣີມ່ຽມທີ່ທ່ານໄວ້ວາງໃຈ</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200">
+                <div class="hero-content">
+                    <h2>ວັດຖຸດິບຊັ້ນເລີດ</h2>
+                    <p>ຄັດສັນສິ່ງທີ່ດີທີ່ສຸດເພື່ອລູກຄ້າຂອງພວກເຮົາ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="page">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:40px;">ເມນູ (20 ລາຍການ)</h2>
+            <div class="grid" id="product-grid"></div>
+        </div>
+    </section>
+
+    <section id="promo" class="page">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:40px;">ໂປຣໂມຊັ່ນພິເສດ</h2>
+            <div class="promo-card">
+                <img src="https://images.unsplash.com/photo-1721489620017-aedd0cffb93e?w=600">
+                <div class="promo-text">
+                    <h3>ຊື້ 5 ແຖມ 1 ທັນທີ!</h3>
+                    <p>ສຳລັບທາດໄຂ່ (Egg Tart) ທຸກລົດຊາດ ມື້ນີ້ເຖິງທ້າຍເດືອນເທົ່ານັ້ນ.</p>
+                </div>
+            </div>
+            <div class="promo-card">
+                <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/anniversary-celebration-template-design-9bcea7e6b5147b8867e3643dc351a776_screen.jpg?ts=1650356751">
+                <div class="promo-text">
+                    <h3>ໂປຣໂມຊັ່ນພິເສດ ສະຫຼອງເປີດຮ້ານຄົບຮອບ1ປີ</h3>
+                    <p>ພຽງໃສ່ລະຫັດຄູປອງ LAO2024 ຮັບສ່ວນຫຼຸດໄປເລີຍ 5% </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="page">
+        <div class="container" style="text-align:center;">
+            <h2>ຕິດຕໍ່ພວກເຮົາ</h2>
+            <div style="margin-top:30px; font-size:1.2rem;">
+                <p><i class="fa-solid fa-location-dot"></i> ບ້ານ ສີຫອມ, ເມືອງ ຈັນທະບູລີ , ນະຄອນຫຼວງວຽງຈັນ</p>
+                <p><i class="fa-solid fa-phone"></i> 020 5555 5555(ທ.ສຸດທິໄຊ ທອງປະເສີດ)</p>
+                <p><i class="fa-solid fa-phone"></i> 020 5555 5454(ທ.ນົບພະຄຸນ ພົນທອງສີ)</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="sidebar" id="sidebar">
+        <h3>ລາຍການສັ່ງຊື້</h3>
+        <div class="cart-list" id="cart-list"></div>
+        <div class="bill-form">
+            <input type="text" id="custName" placeholder="ຊື່ລູກຄ້າ">
+            <input type="text" id="custTel" placeholder="ເບີໂທລະສັບ">
+            <input type="text" id="cusLoc" placeholder="ສະຖານທີ່ຈັດສົ່ງ(ຫຼືມາເອົາຢູ່ຮ້ານ)">
+            <div style="display:flex; justify-content:space-between; padding:15px 0; font-weight:bold;">
+                <span>ລວມທັງໝົດ:</span> <span id="total">0 ກີບ</span>
+            </div>
+            <button class="btn-checkbill" onclick="checkBill()">ຢືນຢັນການສັ່ງຊື້ (Check Bill)</button>
+        </div>
+        <button onclick="toggleCart()" style="margin-top:15px; border:none; background:none; color:red; cursor:pointer;">ປິດ</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

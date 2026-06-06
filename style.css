@@ -1,0 +1,101 @@
+
+:root { --primary: #4e342e; --gold: #c6a664; --bg: #fdfaf5; --white: #ffffff; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans Lao', sans-serif; }
+body { background: var(--bg); color: #333; }
+
+/* Navigation Bar - ໂລໂກ້ຢູ່ເບື້ອງຊ້າຍ */
+header { background: var(--primary); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; width: 90%; margin: auto; }
+    .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .logo i { font-size: 2rem; color: var(--gold); }
+    .nav-links a { color: #d7ccc8; text-decoration: none; margin: 0 15px; font-weight: 500; cursor: pointer; transition: 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: white; border-bottom: 2px solid var(--gold); }
+    .cart-icon { background: var(--gold); padding: 8px 15px; border-radius: 50px; cursor: pointer; }
+
+        /* Section Control */
+        .page { display: none; min-height: 80vh; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Hero Slider - ໜ້າແລກ */
+        .hero { height: 90vh; position: relative; overflow: hidden; }
+        .slide { position: absolute; inset: 0; opacity: 0; transition: 3s; }
+        .slide.active { opacity: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
+        .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; width: 80%; }
+        .hero-content h2 { font-size: 3.5rem; margin-bottom: 10px; }
+
+        /* Product Grid - ເມນູ 20 ຢ່າງ */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-info { padding: 15px; }
+        .price { color: var(--gold); font-weight: bold; font-size: 1.2rem; margin: 10px 0; }
+        .btn-add { width: 100%; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
+
+/* Promotion with Images - ປັບປຸງໃຫມ່ໃຫ້ກະທັດຮັດ */
+.promo-card { 
+    display: flex; 
+    background: white; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    margin: 0 auto 30px auto; /* ໃຫ້ຢູ່ເຄິ່ງກາງໜ້າຈໍ */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    
+    /* 📍 ຈຸດສຳຄັນ: ບີບຄວາມກວ້າງ ແລະ ຈຳກັດຄວາມສູງບໍ່ໃຫ້ມັນກວ້າງໂພດ */
+    max-width: 750px;       /* 🚫 ປ່ຽນຄວາມກວ້າງໃຫ້ພໍດີ (ປັບຫຼຸດໄດ້ຕາມໃຈ) */
+    height: 250px;          /* 🚫 ລັອກຄວາມສູງໃຫ້ກະທັດຮັດ ບໍ່ຍາວຢຽດ */
+}
+
+.promo-card img { 
+    width: 35%;             /* ປັບສັດສ່ວນຮູບພາບ */
+    height: 100%;           /* ໃຫ້ຮູບສູງເຕັມກາດ */
+    object-fit: cover; 
+}
+
+.promo-text { 
+    padding: 25px;          /* ປັບໄລຍະຫ່າງພາຍໃນໃຫ້ພໍດີ */
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ໃຫ້ຕົວໜັງສືຢູ່ເຄິ່ງກາງແນວດິ່ງ */
+}
+
+.promo-text h3 { 
+    color: var(--primary); 
+    margin-bottom: 10px; 
+    font-size: 1.5rem;       /* ປັບຂະໜາດຫົວຂໍ້ */
+}
+
+.promo-text p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+        /* Checkout Sidebar */
+.sidebar { position: fixed; top: 0; right: -400px; width: 380px; height: 100vh; background: white; z-index: 2000; transition: 0.4s; padding: 25px; display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.2); }
+.sidebar.active { right: 0; }
+.cart-list { 
+        flex: 1;
+        overflow-y: auto; 
+        margin: 20px 0;
+        padding-right: 5px; 
+}
+.bill-form input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; }
+.btn-checkbill { width: 100%; background: var(--gold); color: white; border: none; padding: 15px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; z-index: 1500; }
+
+.overlay.active { display: block; }
+/* ຕົບແຕ່ງໄອຄອນຖັງຂີ້ເຫຍື້ອໃນຕະກ້າສິນຄ້າ */
+.fa-trash {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.fa-trash:hover {
+    transform: scale(1.2); /* ຂະຫຍາຍໃຫຍ່ຂຶ້ນໜ້ອຍໜຶ່ງເວລາເອົາມືໄປຊີ້ */
+    color: #b30000 !important; /* ປ່ຽນເປັນສີແດງເຂັ້ມຂຶ້ນ */
+}
+

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAN-DA Bakery - ໃບບິນສັ່ງຊື້</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Synchronized to match the exact design tokens of your new style.css */
+            --primary: #4e342e;
+            --gold: #c6a664;
+            --bg: #fdfaf5;
+            --text: #2c1d1a;
+            --white: #ffffff;
+            --card-bg: #ffffff;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans Lao', sans-serif; }
+
+        body {
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 40px 20px 60px; color: var(--text);
+        }
+
+        .top-bar {
+            width: 100%; max-width: 500px; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+            border-radius: 3px; margin-bottom: 30px;
+        }
+
+        .bill-container {
+            background: var(--card-bg); width: 100%; max-width: 500px;
+            border-radius: 20px; box-shadow: 0 12px 40px rgba(78, 52, 46, 0.15);
+            border: 1px solid var(--gold); overflow: hidden;
+            animation: slideUp 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+        
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .bill-header {
+            background: var(--primary);
+            padding: 30px 30px 24px; text-align: center;
+        }
+
+        .bill-icon { 
+            width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 1.6rem; color: var(--gold); 
+        }
+
+        .bill-header h2 { 
+            color: #fff; font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; 
+        }
+
+        .bill-header p {
+             color: rgba(255,255,255,0.7); font-size: 0.8rem;
+        }
+
+        .order-id { 
+            display: inline-block; margin-top: 10px; background: rgba(255,255,255,0.15); color: #fff; padding: 4px 14px; border-radius: 50px; font-size: 0.75rem; 
+        }
+
+        .bill-body { padding: 28px 30px; }
+
+        .section-label { 
+            font-size: 0.75rem; font-weight: 700; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; 
+        }
+
+        .section-label::after { 
+            content: ''; flex: 1; height: 1px; background: var(--gold); 
+        }
+
+        .info-grid { 
+            display: grid; gap: 10px; margin-bottom: 24px; 
+        }
+
+        .info-row { 
+            display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 10px; border: 1px solid rgba(198, 166, 100, 0.2);
+        }
+
+        .info-row i { 
+            color: var(--primary); font-size: 0.85rem; margin-top: 2px; 
+        }
+
+        .info-row .label { 
+            font-size: 0.7rem; color: var(--text); opacity: 0.7; font-weight: 600; 
+        }
+
+        .info-row .value { 
+            font-size: 0.85rem; color: var(--text); font-weight: 600; 
+        }
+
+        .items-box { 
+            background: var(--bg); border-radius: 12px; border: 1px solid var(--gold); overflow: hidden; margin-bottom: 20px; 
+        }
+
+        .items-box-header { 
+            background: var(--gold); color: var(--primary); padding: 8px 16px; display: grid; grid-template-columns: 1fr auto; font-size: 0.75rem; font-weight: 700; 
+        }
+
+        .item-line { 
+            display: grid; grid-template-columns: 1fr auto; padding: 10px 16px; border-bottom: 1px dashed var(--gold); align-items: center; 
+        }
+        
+        .item-line:last-child { border-bottom: none; }
+
+        .item-name { 
+            font-size: 0.85rem; color: var(--text); 
+        }
+
+        .item-price { 
+            font-size: 0.85rem; color: var(--primary); font-weight: 700; 
+        }
+
+        .total-box { 
+            background: var(--primary); border-radius: 14px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; 
+        }
+
+        .total-box .label { 
+            color: rgba(255,255,255,0.8); font-size: 0.85rem; 
+        }
+
+        .total-box .amount { 
+            color: #fff; font-size: 1.3rem; font-weight: 700; 
+        }
+
+        .dash-divider { 
+            border: none; border-top: 2px dashed var(--gold); margin: 0 0 24px; 
+        }
+
+        .btn-print { 
+            display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; background: var(--gold); color: white; border: none; padding: 15px; border-radius: 12px; font-family: inherit; font-weight: 700; font-size: 0.92rem; cursor: pointer; margin-bottom: 10px; transition: 0.3s;
+        }
+
+        .btn-print:hover { background: #b39154; transform: scale(1.02); }
+
+        .btn-back { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 9px; width: 100%; 
+            background: var(--bg); 
+            color: var(--text); 
+            border: 1px solid var(--gold); 
+            padding: 13px; 
+            border-radius: 12px; 
+            font-family: inherit; 
+            font-weight: 700; 
+            font-size: 0.9rem; 
+            text-decoration: none; 
+            text-align: center; 
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { background: var(--gold); color: white; }
+
+        .bill-footer { text-align: center; margin-top: 24px; font-size: 0.75rem; color: var(--text); opacity: 0.7; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .bill-container { box-shadow: none; border: none; }
+            .btn-print, .btn-back, .top-bar, .bill-footer { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar"></div>
+
+    <div class="bill-container">
+        <div class="bill-header">
+            <div class="bill-icon" style="display: flex;justify-content: center;align-items: center;">
+                <img src="logo.png" alt="Logo" style="height: 120px;width: 120px;object-fit: contain;">
+            </div>
+            <h2>ບິນສັ່ງຊື້ສຳເລັດ</h2>
+            <p>ຂໍຂອບໃຈທີ່ໃຊ້ບໍລິການ PAN-DA Bakery</p>
+            <span class="order-id" id="order-id">#PBK-000000</span>
+        </div>
+
+        <div class="bill-body" id="order-summary">
+            <p style="text-align:center;color:#999;padding:30px 0">ກຳລັງໂຫຼດ...</p>
+        </div>
+        
+    </div>
+
+    <div class="bill-footer">
+        PAN-DA Bakery — ຮ້ານຂາຍຂະໜົມປັງອົບສົດໃໝ່ທຸກວັນ © 2023
+    </div>
+
+    <script>
+    const summary = document.getElementById('order-summary');
+    const raw = localStorage.getItem('myOrder');
+
+    if (!raw) {
+        summary.innerHTML = '<p style="text-align:center;padding:40px 0;color:#999">ບໍ່ພົບຂໍ້ມູນ. <a href="index.html" style="color:#4e342e;font-weight:700">ກັບໄປໜ້າຫຼັກ</a></p>';
+    } else {
+        const order = JSON.parse(raw);
+        document.getElementById('order-id').innerText = '#PBK-' + Date.now().toString().slice(-6);
+
+        // 1. ຄຳນວນຈັດກຸ່ມສິນຄ້າທີ່ຊໍ້າກັນ ແລະ ນັບຈຳນວນ (Quantity)
+        const groupedItems = {};
+        order.items.forEach(item => {
+            if (groupedItems[item.id]) {
+                groupedItems[item.id].qty += 1;
+            } else {
+                groupedItems[item.id] = { ...item, qty: 1 };
+            }
+        });
+
+        // Convert ໃຫ້ກາຍເປັນ Array ຄືເກົ່າເພື່ອເອົາໄປລູບສະແດງຜົນ
+        const finalItems = Object.values(groupedItems);
+
+        // 2. ສະແດງຜົນຂໍ້ມູນລົງໃນ HTML
+        summary.innerHTML = `
+            <p class="section-label">ຂໍ້ມູນລູກຄ້າ</p>
+            <div class="info-grid">
+                <div class="info-row">
+                    <div><div class="label">ຊື່-ນາມສະກຸນ</div><div class="value">${order.name}</div></div>
+                </div>
+
+                <div class="info-row">
+                    <div><div class="label">ເບີໂທລະສັບ</div><div class="value">${order.tel}</div></div>
+                </div>
+
+                ${order.loc ? `
+                <div class="info-row">
+                    <div><div class="label">ທີ່ຢູ່ຈັດສົ່ງ</div><div class="value">${order.loc}</div></div>
+                </div>` : ''}
+
+                <div class="info-row">
+                    <div><div class="label">ວັນທີ-ເວລາ</div><div class="value">${order.date}</div></div>
+                </div>
+
+            </div>
+            
+            <p class="section-label">ລາຍການສິນຄ້າ</p>
+
+            <div class="items-box">
+
+                <div class="items-box-header"><span>ລາຍການ</span><span style="text-align: right;">ລາຄາ</span></div>
+
+                ${finalItems.map(item => `
+
+                    <div class="item-line">
+                        <span class="item-name">${item.name} <b style="color: var(--gold)">x${item.qty}</b></span>
+                        <span class="item-price">${(item.price * item.qty).toLocaleString()} ກີບ</span>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div class="coupon-section" style="margin: 20px 0; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #4e342e;">ໂປຣໂມຊັ່ນສ່ວນຫຼຸດ</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="couponInput" placeholder="ໃສ່ລະຫັດສ່ວນຫຼຸດ (ເຊັ່ນ: LAO2024)" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.9rem;">
+                    <button onclick="applyCoupon()" style="background: #4e342e; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">ໃຊ້ງານ</button>
+                </div>
+                <p id="couponMessage" style="margin-top: 8px; font-size: 0.85rem; display: none;"></p>
+            </div>
+
+            <div class="total-section">
+                <p>ສ່ວນຫຼຸດ: <span id="discount-amount">0</span> ກີບ</p> <h3>ລວມທັງໝົດ: <span id="total-amount">0</span> ກີບ</h3>
+            </div>
+
+            <div class="total-box">
+                <span class="label"> ລວມທັງໝົດ</span>
+                <span class="amount">
+                    <span id="grand-total" ${order.total}</span>
+                </span>        
+            </div>
+
+            <hr class="dash-divider">
+
+            <button class="btn-print" onclick="window.print()">
+                ພິມໃບບິນ
+            </button>
+
+            <a class="btn-back" href="index.html">
+                ກັບໄປໜ້າຫຼັກ
+            </a>
+        `;
+        
+    }
+    // ສ້າງຕົວແປໄວ້ເກັບຍອດລວມທັງໝົດຕອນທຳອິດ (ທີ່ດຶງມາຈາກ localStorage)
+let originalTotal = 0; 
+
+// ຟັງຊັນໂຫຼດຂໍ້ມູນຕອນເປີດໜ້າບິນ (ໃຫ້ເອົາໄປປັບໃສ່ກັບ Code ໂຫຼດບິນເດີມຂອງທ່ານ)
+window.onload = function() {
+    const orderData = JSON.parse(localStorage.getItem('myOrder'));
+    if(orderData) {
+        // ແປງຂໍ້ຄວາມລາຄາ (ເຊັ່ນ "210,000 ກີບ") ໃຫ້ກາຍເປັນຕົວເລກ 210000 ເພື່ອເອົາມາຄິດໄລ່
+        originalTotal = parseFloat(orderData.total.replace(/[^0-9]/g, '')); 
+        
+        // ສະແດງຜົນລາຄາເລີ່ມຕົ້ນໃນจุดต่างๆ
+        document.getElementById('total-amount').innerText = originalTotal.toLocaleString();
+        
+        // 📍 เพิ่มบรรทัดนี้: เพื่อบังคับให้แถบสีน้ำตาลแสดงยอดรวมตั้งต้นทันทีที่เปิดหน้าเว็บ
+        const grandTotalDisplay = document.getElementById('grand-total');
+        if(grandTotalDisplay) {
+            grandTotalDisplay.innerText = orderData.total; 
+        }
+    }
+}
+
+// 📍 ຟັງຊັນຫຼັກໃນການກວດສອບລະຫັດຄູປອງ
+function applyCoupon() {
+    const code = document.getElementById('couponInput').value.trim();
+    const message = document.getElementById('couponMessage');
+    const discountDisplay = document.getElementById('discount-amount');
+    const totalDisplay = document.getElementById('total-amount');
+    const grandTotalDisplay = document.getElementById('grand-total'); // 📍 เพิ่มบรรทัดนี้
+
+    // ກວດຊື່ລະຫັດ (ຮອງຮັບ LAO2024 ທັງໂຕພິມໃຫຍ່ ແລະ ພິມນ້ອຍ)
+    if (code.toUpperCase() === 'LAO2024') { 
+        let discount = originalTotal * 0.05; // ຄິດໄລ່ 5%
+        let finalTotal = originalTotal - discount;
+
+        // ສະແດງຍອດທີ່ຫຼຸດແລ້ວລົງໜ້າເວັບ
+        discountDisplay.innerText = discount.toLocaleString();
+        totalDisplay.innerText = finalTotal.toLocaleString();
+        if(grandTotalDisplay) grandTotalDisplay.innerText = finalTotal.toLocaleString() + " ກີບ"; // 📍 เพิ่มบรรทัดนี้
+
+        // ແຈ້ງເຕືອນສີຂຽວວ່າສຳເລັດ
+        message.style.color = "green";
+        message.innerText = "🎉 ນຳໃຊ້ລະຫັດ 'LAO2024' ສຳເລັດ! ຫຼຸດທັນທີ 5%";
+        message.style.display = "block";
+    } else {
+        // ແຈ້ງເຕືອນສີແດງຖ້າລະຫັດຜິດ
+        message.style.color = "red";
+        message.innerText = "❌ ລະຫັດສ່ວນຫຼຸດບໍ່ຖືກຕ້ອງ ຫຼື ໝົດອາຍຸ!";
+        message.style.display = "block";
+        
+        // ຣີເຊັດຄ່າກັບໄປเป็นລາຄາເດີມ
+        discountDisplay.innerText = "0";
+        totalDisplay.innerText = originalTotal.toLocaleString();
+        if(grandTotalDisplay) grandTotalDisplay.innerText = originalTotal.toLocaleString() + " ກີບ"; // 📍 เพิ่มบรรทัดนี้
+    }
+}
+</script>
+</body>
+</html>
