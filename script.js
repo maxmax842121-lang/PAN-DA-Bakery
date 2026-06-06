@@ -158,3 +158,19 @@ function checkBill() {
 
     window.location.href = 'receipt.html'; 
 }
+// 11. ຟັງຊັນສຳລັບກົດເປີດ ຫຼື ປິດແຖບເມນູ Dropdown (Hamburger Menu) ເທິງມືຖື
+function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    if (navLinks) {
+        navLinks.classList.toggle('show'); // ສະຫຼັບຄລາສ 'show' ເພື່ອສະແດງ/ຊ່ອນເມນູ
+    }
+}
+
+// 12. ຟັງຊັນພິເສດສຳລັບມືຖື: ເມື່ອກົດເລືອກເມນູແລ້ວ ໃຫ້ປ່ຽນໜ້າ ພ້ອມປິດແຖບ Dropdown ລົງໄປອັດຕະໂນມັດ
+function selectPage(pageId) {
+    showPage(pageId); // ເອີ້ນໃຊ້ຟັງຊັນປ່ຽນໜ້າເດີມທີ່ມີຢູ່ແລ້ວ
+    const navLinks = document.getElementById('nav-links');
+    if (navLinks) {
+        navLinks.classList.remove('show'); // ປິດແຖບ Dropdown ລົງໄປ
+    }
+}
