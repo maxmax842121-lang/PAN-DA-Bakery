@@ -100,79 +100,66 @@ header { background: var(--primary); color: white; padding: 1rem 0; position: st
 }
 
 /* ==========================================
-   ໂຄ້ດຄວບຄຸມປຸ່ມ Drop-down ສະເພາະເທິງມືຖື (ຮອງຮັບ Responsive 100%)
+   ສ່ວນແກ້ໄຂໂຄ້ດສະເພາະການສະແດງຜົນເທິງມືຖື (Dropdown Menu & Grid 2 Column)
    ========================================== */
-
-/* 1. ຄຳສັ່ງສຳລັບໜ້າຈໍຄອມພິວເຕີ (Desktop): ໃຫ້ຊ່ອນປຸ່ມ 3 ຂີດອອກໄປ ແລະ ສະແດງເມນູລຽງກັນຄືເກົ່າ */
-@media (min-width: 769px) {
-    .menu-toggle {
-        display: none !important; /* ຊ່ອນປຸ່ມ 3 ຂີດ ບໍ່ໃຫ້ປາກົດເທິງຄອມ */
-    }
-    .nav-links {
-        display: flex !important; /* ບັງຄັບໃຫ້ແຖບເມນູເທິງຄອມສະແດງເປັນແນວນອນປົກກະຕິ */
-    }
-}
-
-/* 2. ຄຳສັ່ງສຳລັບໜ້າຈໍມືຖື (Mobile): ປ່ຽນແຖບເມນູໃຫ້ເປັນ Dropdown 3 ຂີດ */
 @media (max-width: 768px) {
     
     .nav-container {
         position: relative;
         display: flex;
-        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         width: 92%;
         margin: auto;
     }
 
-    /* ປັບຊື່ຮ້ານໃຫ້ພໍດີຈໍມືຖື */
+    /* 1. ປັບຂະໜາດໂລໂກ້ ແລະ ຊື່ຮ້ານໃຫ້ກະທັດຮັດ */
     .logo h1 {
         font-size: 1.2rem !important;
         white-space: nowrap;
     }
 
-    /* ສະແດງປຸ່ມ 3 ຂີດ (Hamburger) ສະເພາະເທິງມືຖື */
+    /* 2. ເປີດສະແດງຜົນປຸ່ມ 3 ຂີດ (Hamburger) ສະເພາະເທິງມືຖື */
     .menu-toggle {
-        display: block !important; 
+        display: block !important; /* ເປີດໃຫ້ສະແດງຜົນ */
         background: none;
         border: none;
         color: white;
         font-size: 1.5rem;
         cursor: pointer;
-        order: 2; 
+        order: 2; /* ຈັດຕຳແໜ່ງໃຫ້ຢູ່ກ່ອນຕະກ່າສິນຄ້າ */
         margin-left: auto;
         margin-right: 15px;
     }
 
-    /* ຈັດປຸ່ມຕະກ່າສິນຄ້າ */
+    /* 3. ຈັດປຸ່ມຕະກ່າໃຫ້ຢູ່ສົ້ນຂວາສຸດ */
     .cart-icon {
         order: 3;
         padding: 6px 12px !important;
         font-size: 0.9rem;
     }
 
-    /* ເຮັດໃຫ້ເມນູກາຍເປັນກ່ອງ Dropdown ຊ່ອນໄວ້ກ່ອນ */
+    /* 4. ປ່ຽນແຖບເມນູໃຫ້ກາຍເປັນກ່ອງ Dropdown ຊ່ອນໄວ້ດ້ານເທິງ */
     .nav-links {
-        display: none; 
+        display: none; /* ຊ່ອນເມນູໄວ້ເປັນຄ່າເລີ່ມຕົ້ນ */
         position: absolute;
-        top: 100%; 
+        top: 100%; /* ໃຫ້ສະແດງຢູ່ກ້ອງແຖບ Header ພໍດີ */
         left: 0;
         width: 100%;
-        background: var(--primary); 
-        flex-direction: column; 
+        background: var(--primary); /* ໃຊ້ສີນ້ຳຕານເຂັ້ມຄືເກົ່າ */
+        flex-direction: column; /* ຈັດລາຍການເມນູລຽງກັນເປັນແນວດິ່ງ */
         padding: 10px 0;
         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         border-top: 1px solid rgba(255,255,255,0.1);
         z-index: 999;
     }
 
-    /* ສະແດງ Dropdown ເມື່ອກົດປຸ່ມ (ຄວບຄຸມຜ່ານ JS ຄລາສ 'show') */
+    /* 5. ເມື່ອມີຄລາສ 'show' ໃຫ້ສະແດງກ່ອງ Dropdown ອອກມາ */
     .nav-links.show {
-        display: flex !important; 
+        display: flex; /* ສະແດງເມນູອອກມາ */
     }
 
-    /* ຕົບແຕ່ງລິ້ງຄ໌ເມນູໃນ Dropdown ເທິງມືຖື */
+    /* 6. ຕົບແຕ່ງລາຍການລິ້ງຄ໌ພາຍໃນ Dropdown */
     .nav-links a {
         width: 100%;
         text-align: center;
@@ -191,9 +178,9 @@ header { background: var(--primary); color: white; padding: 1rem 0; position: st
         border-bottom: none !important;
     }
 
-    /* ------------------------------------------
-       ໂຄ້ດໜ້າເມນູຂະໜົມ 2 ຖັນ (ຄືເກົ່າ)
-       ------------------------------------------ */
+    /* ========================================== */
+
+    /* 7. ຮັກສາໂຄ້ດໜ້າເມນູຂະໜົມ 2 ຖັນ ທີ່ຜ່ານແລ້ວໄວ້ຄືເກົ່າ */
     .grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
@@ -212,4 +199,9 @@ header { background: var(--primary); color: white; padding: 1rem 0; position: st
         padding: 6px 10px !important;
         font-size: 0.85rem;
     }
+}
+
+/* ຊ່ອນປຸ່ມ 3 ຂີດ ເວລາເບິ່ງໃນໜ້າຈໍຄອມພິວເຕີ (Desktop) */
+.menu-toggle {
+    display: none;
 }
